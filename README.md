@@ -9,7 +9,7 @@
      ```
 
 2. **Configuración del Módulo:**
-   - Navega a **Ajustes > Usuarios y empresas -> compañías** en Odoo.
+   - Navega a **Ajustes > Usuarios y empresas > compañías** en Odoo.
    - Activa la integración en la pestaña "API de Fake Store" y proporciona la URL de la API. Por defecto, la URL es `https://fakestoreapi.com/products`, pero puedes editarla según tus necesidades.
    - Guarda los cambios.
 
@@ -42,3 +42,5 @@ Los productos creados o actualizados a través de la API se sincronizan automát
 
 Al instalar el módulo, se añaden automáticamente los módulos de Odoo correspondientes, como el módulo de sitio web y el módulo de inventario (stock). Esto permite que las funcionalidades relacionadas con la descarga del archivo Excel desde el sitio web y la visualización de los productos creados desde la API estén disponibles en el sistema.
 
+## Compatibilidad
+Este módulo fue desarrollado para Odoo Enterprise, pero también es completamente compatible con Odoo Community.
