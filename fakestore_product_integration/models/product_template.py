@@ -65,6 +65,12 @@ class ProductTemplate(models.Model):
         Returns:
             list: List of product data dictionaries.
         """
+        company = self.env.user.company_id
+
+        # Validate that the API URL is configured
+        if not company.api_url:
+            raise ValidationError("The API URL is not configured in the company settings.")
+
         try:
             
             response = requests.get(company.api_url)
@@ -114,20 +120,27 @@ class ProductTemplate(models.Model):
 
         values = self._prepare_product_values(product_data, category)
 
+        new_image_url = product_data.get("image")
+        
         if product:
-            new_image_url = product_data.get("image")
-            new_image = self._update_product_image(product, new_image_url)
-            if new_image:
-                values["image_1920"] = new_image
+            if new_image_url and new_image_url != product.image_url:
+                try:
+                    new_image = self.get_image_from_url(new_image_url)
+                    if new_image:
+                        values["image_1920"] = new_image
+                except ValidationError as e:
+                    # Log or handle the error as needed
+                    _logger.error(f"Error updating image for product {product_data.get('id')}: {e}")
             product.with_context(lang=self.env.user.lang).write(values)
-            product.write(values)
-
         else:
-            new_image_url = product_data.get("image")
             if new_image_url:
-                image_response = self.get_image_from_url(new_image_url)
-                values["image_1920"] = image_response
-
+                try:
+                    image_response = self.get_image_from_url(new_image_url)
+                    if image_response:
+                        values["image_1920"] = image_response
+                except ValidationError as e:
+                    # Log or handle the error as needed
+                    _logger.error(f"Error downloading image for new product {product_data.get('id')}: {e}")
             self.create(values)
 
     def get_image_from_url(self, url: str):
