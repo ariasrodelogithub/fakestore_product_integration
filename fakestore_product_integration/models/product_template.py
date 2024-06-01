@@ -11,6 +11,7 @@ class ProductTemplate(models.Model):
     rating_count = fields.Integer(string="Rating Count")
     image_url = fields.Char("Image URL")
     api_product = fields.Boolean(default=False)
+    custom_id = fields.Char(string='My Custom ID')
 
     @api.onchange("image_1920")
     def _onchange_image_1920(self):
@@ -95,6 +96,7 @@ class ProductTemplate(models.Model):
     def _prepare_product_values(self, product_data, category):
         rating_data = product_data.get("rating", {})
         values = {
+            "custom_id":  product_data.get("id", "Default id"),
             "name": product_data.get("title", "Default Title"),
             "list_price": product_data.get("price", 0.0),
             "categ_id": category.id,
@@ -115,9 +117,9 @@ class ProductTemplate(models.Model):
     def _create_or_update_product(self, product_data):
         category = self._get_or_create_category(product_data.get("category"))
         product = self.env["product.template"].search(
-            [("id", "=", str(product_data.get("id")))], limit=1
+            [("custom_id", "=", str(product_data.get("id")))], limit=1
         )
-
+    
         values = self._prepare_product_values(product_data, category)
 
         new_image_url = product_data.get("image")
@@ -132,6 +134,7 @@ class ProductTemplate(models.Model):
                     # Log or handle the error as needed
                     _logger.error(f"Error updating image for product {product_data.get('id')}: {e}")
             product.with_context(lang=self.env.user.lang).write(values)
+            product.write(values)
         else:
             if new_image_url:
                 try:
@@ -141,6 +144,7 @@ class ProductTemplate(models.Model):
                 except ValidationError as e:
                     # Log or handle the error as needed
                     _logger.error(f"Error downloading image for new product {product_data.get('id')}: {e}")
+                    
             self.create(values)
 
     def get_image_from_url(self, url: str):
