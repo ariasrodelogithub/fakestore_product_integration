@@ -9,8 +9,8 @@
                 <group string="Rating">
                     <field name="rating_rate"/>
                     <field name="rating_count"/>
-                    <field name="image_url" />
-                    <field name="api_product" invisible="1" />
+                    <field name="image_url" invisible="1"/>
+                    <field name="api_product" invisible="1"/>
                 </group>
             </xpath>
         </field>
