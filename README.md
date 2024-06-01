@@ -38,3 +38,7 @@ Los productos creados o actualizados a través de la API se sincronizan automát
 - Los productos se actualizarán diariamente automáticamente. También puedes forzar una actualización manual ejecutando la acción planificada llamada "Update Products from Fake Store API" desde **Configuración > Técnicas > Automatizaciones programadas**.
 - Para exportar la lista de productos creados o actualizados a un archivo de Excel, simplemente ve al sitio web y haz clic en el botón "Exportar Productos a Excel". Este botón se encuentra en el header, al lado del botón "Contact us", y te permitirá descargar los datos de los productos actualizados mediante la API.
 
+## Integración con otros Módulos
+
+Al instalar el módulo, se añaden automáticamente los módulos de Odoo correspondientes, como el módulo de sitio web y el módulo de inventario (stock). Esto permite que las funcionalidades relacionadas con la descarga del archivo Excel desde el sitio web y la visualización de los productos creados desde la API estén disponibles en el sistema.
+
