@@ -11,7 +11,7 @@
     'summary': """ Integration with Fake Store API for automatic product creation and updates in Odoo.""",
     'author': 'Mauricio Arias Rodelo',
     'category': 'Integration',
-    'depends': ['base', 'website', 'product', 'stock'],
+    'depends': ['base', 'website', 'product', 'stockg'],
     "data": [
         "views/res_company_views.xml",
         "views/product_template_views.xml",
