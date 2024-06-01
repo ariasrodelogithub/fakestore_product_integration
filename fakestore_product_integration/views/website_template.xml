@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="custom_navbar_nav" inherit_id="website.navbar_nav" name="Custom Navbar Nav">
+        <xpath expr="//ul[@id='top_menu']" position="after">
+            <t t-if="request.env.user">
+                <a role="menuitem" href="/download/excel" class="btn btn-primary">
+                    <span class="fa fa-download"></span> Exportar Productos a Excel
+                </a>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
