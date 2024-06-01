@@ -9,7 +9,7 @@
      ```
 
 2. **Configuración del Módulo:**
-   - Navega a **Configuración > Ajustes de la compañía** en Odoo.
+   - Navega a **Ajustes > Usuarios y empresas -> compañías** en Odoo.
    - Activa la integración en la pestaña "API de Fake Store" y proporciona la URL de la API. Por defecto, la URL es `https://fakestoreapi.com/products`, pero puedes editarla según tus necesidades.
    - Guarda los cambios.
 
@@ -35,7 +35,7 @@ Los productos creados o actualizados a través de la API se sincronizan automát
 
 ## Uso
 
-- Los productos se actualizarán diariamente automáticamente. También puedes forzar una actualización manual ejecutando la acción planificada llamada "Update Products from Fake Store API" desde **Configuración > Técnicas > Automatizaciones programadas**.
+- Los productos se actualizarán diariamente automáticamente. También puedes forzar una actualización manual ejecutando la acción planificada llamada "Update Products from Fake Store API" desde **Ajustes > Técnico > Acciones planeadas**.
 - Para exportar la lista de productos creados o actualizados a un archivo de Excel, simplemente ve al sitio web y haz clic en el botón "Exportar Productos a Excel". Este botón se encuentra en el header, al lado del botón "Contact us", y te permitirá descargar los datos de los productos actualizados mediante la API.
 
 ## Integración con otros Módulos
